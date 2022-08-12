@@ -1,38 +1,168 @@
-.App {
-  text-align: center;
+body {
+  padding: 0;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Nav-bar {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 20px;
+  padding: 0.5em 0 0.5em 4rem;
+  border: 1px solid #a2a2a2;
+  background-color: #f4f4f4;
+  -webkit-box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.75);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.options-continer {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  margin: 24px 20px 0 0;
+}
+
+.Nav-bar-element {
+  color: #34495e;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.Book-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 40px;
+  border: 1px solid #a2a2a2;
+  background-color: #f4f4f4;
+  -webkit-box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.75);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.book-paragraph {
+  margin: 0;
+  padding: 0;
+}
+
+.book-author {
+  margin: 0;
+  padding: 0;
+}
+
+.book-name {
+  margin: 0;
+  padding: 0;
+}
+
+.buttons-continer {
+  display: flex;
+  gap: 10px;
+}
+
+.button {
+  all: unset;
+  width: 60px;
+  height: 20px;
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  position: relative;
+  color: #f0f0f0;
+  cursor: pointer;
+  z-index: 1;
+  padding: 10px 20px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
-.App-link {
-  color: #61dafb;
+.button::after,
+.button::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -99999;
+  transition: all 0.4s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button::before {
+  transform: translate(0%, 0%);
+  width: 100%;
+  height: 100%;
+  background: #28282d;
+  border-radius: 10px;
+}
+
+.button::after {
+  transform: translate(10px, 10px);
+  width: 35px;
+  height: 35px;
+  background: #ffffff15;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 50px;
+}
+
+.button:hover::before {
+  transform: translate(5%, 20%);
+  width: 110%;
+  height: 110%;
+}
+
+.button:hover::after {
+  border-radius: 10px;
+  transform: translate(0, 0);
+  width: 100%;
+  height: 100%;
+}
+
+.button:active::after {
+  transition: 0s;
+  transform: translate(0, 5%);
+}
+
+.completed-h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.completed-p {
+  margin: 0;
+  padding: 0;
+}
+
+.hr {
+  border-style: solid none none none;
+  border-color: #40514e;
+  border-width: 1px;
+  width: 90%;
+}
+
+.input {
+  border-style: none none solid none;
+  width: 40%;
+}
+
+.form-text {
+  color: #34495e;
+  margin-left: 2.4rem;
+}
+
+.form {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-evenly;
 }
