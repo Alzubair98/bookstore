@@ -10,7 +10,6 @@ const Books = () => (
     <hr className="hr" />
     <Form />
   </>
-
 );
 
 export default Books;
