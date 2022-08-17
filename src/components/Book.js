@@ -17,13 +17,24 @@ const Book = (props) => {
           <Button name="Edit" />
         </div>
       </div>
-      <div className="completed-continar">
-        <h2 className="completed-h2">
-          {completed}
-          %
-        </h2>
-        <p className="completed-p">complete</p>
+      <div className="second-continer">
+        <div className="completed-continar">
+          <h2 className="completed-h2">
+            {completed}
+            %
+          </h2>
+          <p className="completed-p">complete</p>
+        </div>
+        <div>
+          <hr className="card-hr" />
+        </div>
+        <div>
+          <p className="para-chapter">CURRENT CHAPTER</p>
+          <h4 className="para-h4">Chapter 17</h4>
+          <Button name="Update Progress" />
+        </div>
       </div>
+
     </div>
   );
 };
