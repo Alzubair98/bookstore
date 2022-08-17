@@ -1,10 +1,8 @@
 const CHECKING = 'book-store-react/categories.js/CHECKING';
 
-const defaultState = {
-  categoriesList: [],
-};
+const categoriesList = [];
 
-export default function catReducer(state = defaultState, action) {
+export default function catReducer(state = categoriesList, action) {
   switch (action.type) {
     case CHECKING:
       return [action.text];
@@ -13,7 +11,7 @@ export default function catReducer(state = defaultState, action) {
   }
 }
 
-export function addbook() {
+export function CategorieFunction() {
   return {
     type: CHECKING,
     text: 'Under maintain',

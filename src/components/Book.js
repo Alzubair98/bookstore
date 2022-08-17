@@ -1,9 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Button from './button';
+import { removeBook } from '../redux/books/books';
 
 const Book = (props) => {
   const booksList = useSelector((state) => state.bookReducer);
+  const dispatch = useDispatch();
   const {
     catagory, completed,
   } = props;
@@ -15,7 +17,7 @@ const Book = (props) => {
         <h3 className="book-author">{book.author}</h3>
         <div className="buttons-continer">
           <Button name="Comments" />
-          <Button name="Remove" />
+          <Button Click={() => dispatch(removeBook(book.id))} name="Remove" />
           <Button name="Edit" />
         </div>
       </div>
