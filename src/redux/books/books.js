@@ -1,9 +1,20 @@
 const ADDING = 'book-store-react/books/ADDING';
 const REMOVING = 'book-store-react/books/REMOVING';
 
-const defaultState = { bookList: [] };
+const bookList = [
+  {
+    title: 'Wuthering Heights',
+    author: 'Emily Bronte',
+    id: 0,
+  },
+  {
+    title: 'Ethan Frome',
+    author: 'edith Wharton',
+    id: 1,
+  },
+];
 
-export default function bookReducer(state = defaultState, action) {
+export default function bookReducer(state = bookList, action) {
   switch (action.type) {
     case ADDING:
       return [...state, {
@@ -12,7 +23,7 @@ export default function bookReducer(state = defaultState, action) {
         id: action.id,
       }];
     case REMOVING:
-      return state.bookList.filter((book) => (
+      return state.filter((book) => (
         book.id !== action.id
       ));
     default:

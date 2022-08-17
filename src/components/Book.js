@@ -1,19 +1,23 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Button from './button';
+import { removeBook } from '../redux/books/books';
 
 const Book = (props) => {
+  const booksList = useSelector((state) => state.bookReducer);
+  const dispatch = useDispatch();
   const {
-    name, catagory, author, completed,
+    catagory, completed,
   } = props;
-  return (
-    <div className="Book-card">
+  return (booksList.map((book) => (
+    <div className="Book-card" key={book.id}>
       <div>
         <p className="book-paragraph">{catagory}</p>
-        <h1 className="book-name">{name}</h1>
-        <h3 className="book-author">{author}</h3>
+        <h1 className="book-name">{book.title}</h1>
+        <h3 className="book-author">{book.author}</h3>
         <div className="buttons-continer">
           <Button name="Comments" />
-          <Button name="Remove" />
+          <Button Click={() => dispatch(removeBook(book.id))} name="Remove" />
           <Button name="Edit" />
         </div>
       </div>
@@ -25,7 +29,7 @@ const Book = (props) => {
         <p className="completed-p">complete</p>
       </div>
     </div>
-  );
+  )));
 };
 
 export default Book;
