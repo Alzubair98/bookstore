@@ -3,7 +3,7 @@ import Button from './button';
 
 const Book = (props) => {
   const {
-    catagory, completed, name, author, Click,
+    catagory, completed, name, author, Click, id,
   } = props;
   return (
     <div className="Book-card">
@@ -13,7 +13,7 @@ const Book = (props) => {
         <h3 className="book-author">{author}</h3>
         <div className="buttons-continer">
           <Button name="Comments" />
-          <Button Click={Click} name="Remove" />
+          <Button Click={Click} id={id} name="Remove" />
           <Button name="Edit" />
         </div>
       </div>
