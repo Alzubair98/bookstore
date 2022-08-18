@@ -28,11 +28,11 @@ const Form = () => {
 
   return (
     <>
-      <h3 className="form-text">Add New Books!</h3>
+      <h3 className="form-text">ADD NEW BOOK</h3>
       <form className="form" onSubmit={handelSubmit}>
         <Input name="title" value={state.title} change={handel} type="text" placholder="Enter Book Name" />
         <Input name="author" value={state.author} change={handel} type="text" placholder="Enter Auther Name" />
-        <button type="submit" className="button">Add Book</button>
+        <button type="submit" className="button-form">ADD BOOK</button>
       </form>
     </>
   );
