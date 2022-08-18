@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Button from './button';
 import { CategorieFunction } from '../redux/categories/categories';
 
 const Catagories = () => {
@@ -9,7 +8,7 @@ const Catagories = () => {
 
   return (
     <>
-      <Button Click={() => dispatch(CategorieFunction())} name="Check Status" />
+      <button type="button" onClick={() => dispatch(CategorieFunction())} className="button-form">Check Status</button>
       <h2>{status}</h2>
     </>
   );

@@ -1,48 +1,58 @@
+import axios from 'axios';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import uuid from 'uuid-js';
+
 const ADDING = 'book-store-react/books/ADDING';
 const REMOVING = 'book-store-react/books/REMOVING';
+const LODING = 'book-store-react/books/LODING';
 
-const bookList = [
-  {
-    title: 'Wuthering Heights',
-    author: 'Emily Bronte',
-    id: 0,
-  },
-  {
-    title: 'Ethan Frome',
-    author: 'edith Wharton',
-    id: 1,
-  },
-];
+const appId = 't6wT84TuMQse8pHsb6Fm';
+const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps';
 
-export default function bookReducer(state = bookList, action) {
-  switch (action.type) {
-    case ADDING:
-      return [...state, {
-        title: action.title,
-        author: action.author,
-        id: action.id,
-      }];
-    case REMOVING:
-      return state.filter((book) => (
-        book.id !== action.id
-      ));
-    default:
-      return state;
-  }
-}
+export const loadBook = createAsyncThunk(LODING, async () => {
+  const response = await axios.get(`${url}/${appId}/books/`);
 
-export function addBook(bookTitle, bookAuthor, bookId) {
-  return {
-    type: ADDING,
-    title: bookTitle,
-    author: bookAuthor,
-    id: bookId,
+  const res = response.data;
+  const spData = Object.keys(res).map((key) => ({
+    id: key,
+    ...res[key][0],
+  }));
+
+  return spData;
+});
+
+export const addBook = createAsyncThunk(ADDING, async (
+  { title, author, category },
+  thunkAPI,
+) => {
+  const book = {
+    item_id: uuid.create().toString(),
+    title,
+    author,
+    category,
   };
-}
 
-export function removeBook(bookId) {
-  return {
-    type: REMOVING,
-    id: bookId,
-  };
-}
+  await axios.post(`${url}/${appId}/books/`, book).then(() => thunkAPI.dispatch(loadBook()));
+  const books = thunkAPI.getState().booksList;
+  return books;
+});
+
+export const removeBook = createAsyncThunk(REMOVING, async (id, thunkAPI) => {
+  await axios.delete(`${url}/${appId}/books/${id}`)
+    .then(() => thunkAPI.dispatch(loadBook()));
+  const books = thunkAPI.getState.booksList;
+  return books;
+});
+
+const storeSlice = createSlice({
+  name: 'book-store-react/books',
+  initialState: [],
+  extraReducers: {
+    [loadBook.fulfilled]: (state, action) => action.payload,
+    [addBook.fulfilled]: (state, action) => action.payload,
+    [removeBook.fulfilled]: (state, action) => action.payload,
+  },
+});
+
+export const booksList = (state) => state.bookList;
+export default storeSlice.reducer;
